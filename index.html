@@ -14,103 +14,111 @@
       rel="stylesheet"
     />
   </head>
- <body>
+  <body>
+    <header class="navbar">
+      <div class="logo">🍴 Deelah Delight</div>
+      <nav>
+        <ul class="nav-links" id="nav-links" aria-label="Primary">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="order-btn">Order Now</button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle menu"
+        aria-controls="nav-links"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </header>
 
-  <header class="navbar">
-    <div class="logo">🍴 Deelah Delight</div>
+    <div class="nav-overlay" id="nav-overlay" hidden></div>
 
-    <nav>
-      <ul class="nav-links" id="nav-links" aria-label="Primary">
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <button class="order-btn">Order Now</button>
-
-  
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
- 
-  <div class="nav-overlay" id="nav-overlay" hidden></div>
-
-
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1 class="hero-title">Fresh. Fast. Flavorful.</h1>
-      <p class="hero-subtitle">Where every bite is a burst of happiness ✨</p>
-      <button class="hero-btn">Explore Menu</button>
-    </div>
-    <div class="hero-img">
-      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=80" alt="Restaurant Dish"/>
-    </div>
-  </section>
-
- 
-  <section class="features" id="about">
-    <div class="feature-card">
-      <i class="fa-solid fa-bowl-food"></i>
-      <h3>Authentic Recipes</h3>
-      <p>Prepared with love and premium ingredients for the perfect taste.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-truck"></i>
-      <h3>Fast Delivery</h3>
-      <p>Your favorites delivered hot and fresh to your doorstep.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-star"></i>
-      <h3>Customer Delight</h3>
-      <p>We serve not just food, but an unforgettable experience.</p>
-    </div>
-    <div class="feature-card">
-      <i class="fa-solid fa-leaf"></i>
-      <h3>Fresh Ingredients</h3>
-      <p>Farm-fresh produce for quality, flavor, and health in every bite.</p>
-    </div>
-  </section>
-
-
-  <section class="menu-preview" id="menu">
-    <h2 class="section-title">✨ Preview Our Menu</h2>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <img src="./images/still-life-delicious-american-hamburger.jpg" alt="Burger Delight"/>
-        <h3>Juicy Burger</h3>
-        <p>Grilled to perfection with fresh veggies & special sauce.</p>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1 class="hero-title">Fresh. Fast. Flavorful.</h1>
+        <p class="hero-subtitle">Where every bite is a burst of happiness ✨</p>
+        <button class="hero-btn">Explore Menu</button>
       </div>
-      <div class="menu-item">
-        <img src="./images/penne-pasta-cream-cheese.jpg" alt="Creamy Pasta"/>
-        <h3>Creamy Pasta</h3>
-        <p>Italian-inspired pasta made with the finest ingredients.</p>
+      <div class="hero-img">
+        <img
+          src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=80"
+          alt="Restaurant Dish"
+        />
       </div>
-      <div class="menu-item">
-        <img src="./images/vitamin-salad-young-vegetables-cabbage-radish-cucumber-fresh-herbs.jpg" alt="Fresh Salad"/>
-        <h3>Fresh Salad</h3>
-        <p>A refreshing mix of crisp greens & healthy toppings.</p>
+    </section>
+
+    <section class="features" id="about">
+      <div class="feature-card">
+        <i class="fa-solid fa-bowl-food"></i>
+        <h3>Authentic Recipes</h3>
+        <p>Prepared with love and premium ingredients for the perfect taste.</p>
       </div>
-    </div>
-    <div class="menu-btn-container">
-      <button class="view-menu-btn">View Full Menu</button>
-    </div>
-  </section>
+      <div class="feature-card">
+        <i class="fa-solid fa-truck"></i>
+        <h3>Fast Delivery</h3>
+        <p>Your favorites delivered hot and fresh to your doorstep.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-star"></i>
+        <h3>Customer Delight</h3>
+        <p>We serve not just food, but an unforgettable experience.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-leaf"></i>
+        <h3>Fresh Ingredients</h3>
+        <p>Farm-fresh produce for quality, flavor, and health in every bite.</p>
+      </div>
+    </section>
 
+    <section class="menu-preview" id="menu">
+      <h2 class="section-title">✨ Preview Our Menu</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img
+            src="./images/still-life-delicious-american-hamburger.jpg"
+            alt="Burger Delight"
+          />
+          <h3>Juicy Burger</h3>
+          <p>Grilled to perfection with fresh veggies & special sauce.</p>
+        </div>
+        <div class="menu-item">
+          <img src="./images/penne-pasta-cream-cheese.jpg" alt="Creamy Pasta" />
+          <h3>Creamy Pasta</h3>
+          <p>Italian-inspired pasta made with the finest ingredients.</p>
+        </div>
+        <div class="menu-item">
+          <img
+            src="./images/vitamin-salad-young-vegetables-cabbage-radish-cucumber-fresh-herbs.jpg"
+            alt="Fresh Salad"
+          />
+          <h3>Fresh Salad</h3>
+          <p>A refreshing mix of crisp greens & healthy toppings.</p>
+        </div>
+      </div>
+      <div class="menu-btn-container">
+        <a href="./menu.html"
+          ><button class="view-menu-btn">View Full Menu</button></a
+        >
+      </div>
+    </section>
 
-  <footer id="contact">
-    <div class="socials">
-      <a href="#"><i class="fa-brands fa-facebook"></i></a>
-      <a href="#"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-    </div>
-    <p>© 2025 Deelah Delight. All Rights Reserved.</p>
-  </footer>
+    <footer id="contact">
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+      <p>© 2025 Deelah Delight. All Rights Reserved.</p>
+    </footer>
 
- 
-  <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
-  <script src="./app.js"></script>
+    <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
+    <script src="./app.js"></script>
+  </body>
 </html>
