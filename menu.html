@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu | Deelah Delight</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">🍴 Deelah Delight</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="#burgers">Breakfast</a></li>
+          <li><a href="#pasta">Lunch</a></li>
+          <li><a href="#salads">Dinner</a></li>
+          <li><a href="#drinks">Drinks</a></li>
+        </ul>
+      </nav>
+      <button class="order-btn">Order Now</button>
+    </header>
+
+    <main class="menu-page">
+      <h1 class="menu-title">Our Delicious Menu</h1>
+
+      <div class="menu-tabs">
+        <button class="tab-btn active" data-target="All">All</button>
+        <button class="tab-btn active" data-target="Breakfast">
+          Breakfast
+        </button>
+        <button class="tab-btn" data-target="Lunch">Lunch</button>
+        <button class="tab-btn" data-target="Dinner">Dinner</button>
+        <button class="tab-btn" data-target="drinks">🥤 Drinks</button>
+      </div>
+
+      <div class="tab-content active" id="Breakfast">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <img
+              src="./images/still-life-delicious-american-hamburger.jpg"
+              alt="Classic Burger"
+            />
+            <h3>Classic Burger</h3>
+            <p>Juicy grilled beef with fresh lettuce, cheese & sauce.</p>
+            <span class="price">₦3500</span>
+            <div class="menu-actions">
+              <div class="counter">
+                <button class="decrease">-</button>
+                <span class="count">1</span>
+                <button class="increase">+</button>
+              </div>
+              <button class="cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <img
+              src="./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup.jpg"
+              alt="pasta"
+            />
+            <h3>Spahetti</h3>
+            <p>Loaded with extra cheese, pickles & special sauce.</p>
+            <span class="price">₦6000</span>
+            <div class="menu-actions">
+              <div class="counter">
+                <button class="decrease">-</button>
+                <span class="count">1</span>
+                <button class="increase">+</button>
+              </div>
+              <button class="cart-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="Lunch">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <img
+              src="./images/penne-pasta-cream-cheese.jpg"
+              alt="Creamy Pasta"
+            />
+            <h3>Creamy Pasta</h3>
+            <p>Italian-inspired pasta with rich creamy sauce.</p>
+            <span class="price">₦4500</span>
+            <div class="menu-actions">
+              <div class="counter">
+                <button class="decrease">-</button>
+                <span class="count">1</span>
+                <button class="increase">+</button>
+              </div>
+              <button class="cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <img src="./images/spaghetti.jpg" alt="Spaghetti" />
+            <h3>Spaghetti</h3>
+            <p>Classic spaghetti served with rich tomato sauce.</p>
+            <span class="price">₦3000</span>
+            <div class="menu-actions">
+              <div class="counter">
+                <button class="decrease">-</button>
+                <span class="count">1</span>
+                <button class="increase">+</button>
+              </div>
+              <button class="cart-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="Dinner">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <img
+              src="./images/vitamin-salad-young-vegetables-cabbage-radish-cucumber-fresh-herbs.jpg"
+              alt="Fresh Salad"
+            />
+            <h3>Fresh Salad</h3>
+            <p>A refreshing mix of greens, cucumbers & herbs.</p>
+            <span class="price">₦2500</span>
+            <div class="menu-actions">
+              <div class="counter">
+                <button class="decrease">-</button>
+                <span class="count">1</span>
+                <button class="increase">+</button>
+              </div>
+              <button class="cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <img
+              src="./images/tania-melnyczuk-xeTv9N2FjXA-unsplash.jpg"
+              alt="Greek Salad"
+            />
+            <h3>Greek Salad</h3>
+            <p>Olives, feta cheese, and crunchy veggies.</p>
+            <span class="price">₦2800</span>
+            <div class="menu-actions">
+              <div class="counter">
+                <button class="decrease">-</button>
+                <span class="count">1</span>
+                <button class="increase">+</button>
+              </div>
+              <button class="cart-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="drinks">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <img
+              src="./images/melissa-walker-horn-gtDYwUIr9Vg-unsplash.jpg"
+              alt="Cocktail"
+            />
+            <h3>Cocktail</h3>
+            <p>Refreshing fruit cocktail served chilled.</p>
+            <span class="price">₦2000</span>
+            <div class="menu-actions">
+              <div class="counter">
+                <button class="decrease">-</button>
+                <span class="count">1</span>
+                <button class="increase">+</button>
+              </div>
+              <button class="cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="menu-card">
+            <img
+              src="./images/whitney-wright-TgQkxQc-t_U-unsplash.jpg"
+              alt="Fresh Juice"
+            />
+            <h3>Fresh Juice</h3>
+            <p>Made with seasonal fruits for a natural taste.</p>
+            <span class="price">₦1500</span>
+            <div class="menu-actions">
+              <div class="counter">
+                <button class="decrease">-</button>
+                <span class="count">1</span>
+                <button class="increase">+</button>
+              </div>
+              <button class="cart-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+<div class="cart-sidebar" id="cart">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button id="closeCart">&times;</button>
+  </div>
+  <div class="cart-items"></div>
+  <div class="cart-footer">
+    <h3>Total: <span id="cartTotal">₦0</span></h3>
+    <button class="checkout-btn">Checkout</button>
+  </div>
+</div>
+
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="menu.js"></script>
+  </body>
+</html>
