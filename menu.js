@@ -1,153 +1,168 @@
-function initTabs() {
-  const tabBtns = document.querySelectorAll(".tab-btn");
-  const tabContents = document.querySelectorAll(".tab-content");
-
-  tabBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      tabBtns.forEach((b) => b.classList.remove("active"));
-      tabContents.forEach((c) => c.classList.remove("active"));
-
-      btn.classList.add("active");
-      document.getElementById(btn.dataset.target).classList.add("active");
-    });
-  });
-}
-
-function initMenuCounters() {
-  const menuCards = document.querySelectorAll(".menu-card");
-
-  menuCards.forEach((card) => {
-    const decreaseBtn = card.querySelector(".decrease");
-    const increaseBtn = card.querySelector(".increase");
-    const countEl = card.querySelector(".count");
-    const cartBtn = card.querySelector(".cart-btn");
-
-    if (!decreaseBtn || !increaseBtn || !countEl || !cartBtn) return;
-
-    let count = 1;
-
-    const updateCount = (newCount) => {
-      count = Math.max(1, newCount);
-      countEl.textContent = count;
-    };
-
-    increaseBtn.addEventListener("click", () => updateCount(count + 1));
-    decreaseBtn.addEventListener("click", () => updateCount(count - 1));
-
-    cartBtn.addEventListener("click", () => {
-      const itemName = card.querySelector("h3")?.textContent || "Item";
-      alert(`${count} × ${itemName} added to cart 🛒`);
-    });
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  initTabs();
-  initMenuCounters();
-});
+  
+  const menuItems = {
+    Breakfast: [
+      {
+        id: "burger1",
+        name: "Classic Burger",
+        price: 3500,
+        img: "./images/still-life-delicious-american-hamburger.jpg",
+        desc: "Juicy grilled beef with fresh lettuce, cheese & sauce.",
+      },
+      {
+        id: "pasta1",
+        name: "Spaghetti",
+        price: 6000,
+        img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup.jpg",
+        desc: "Loaded with extra cheese, pickles & special sauce.",
+      },
+    ],
+    Lunch: [
+      {
+        id: "pasta2",
+        name: "Creamy Pasta",
+        price: 4500,
+        img: "./images/penne-pasta-cream-cheese.jpg",
+        desc: "Italian-inspired pasta with rich creamy sauce.",
+      },
+      {
+        id: "spag2",
+        name: "Spaghetti",
+        price: 3000,
+        img: "./images/spaghetti.jpg",
+        desc: "Classic spaghetti served with rich tomato sauce.",
+      },
+    ],
+    Dinner: [
+      {
+        id: "salad1",
+        name: "Fresh Salad",
+        price: 2500,
+        img: "./images/vitamin-salad-young-vegetables-cabbage-radish-cucumber-fresh-herbs.jpg",
+        desc: "A refreshing mix of greens, cucumbers & herbs.",
+      },
+      {
+        id: "salad2",
+        name: "Greek Salad",
+        price: 2800,
+        img: "./images/tania-melnyczuk-xeTv9N2FjXA-unsplash.jpg",
+        desc: "Olives, feta cheese, and crunchy veggies.",
+      },
+    ],
+    Drinks: [
+      {
+        id: "drink1",
+        name: "Cocktail",
+        price: 2000,
+        img: "./images/melissa-walker-horn-gtDYwUIr9Vg-unsplash.jpg",
+        desc: "Refreshing fruit cocktail served chilled.",
+      },
+      {
+        id: "drink2",
+        name: "Fresh Juice",
+        price: 1500,
+        img: "./images/whitney-wright-TgQkxQc-t_U-unsplash.jpg",
+        desc: "Made with seasonal fruits for a natural taste.",
+      },
+    ],
+  };
 
-const menuItems = {
-  Breakfast: [
-    {
-      name: "Classic Burger",
-      desc: "Juicy grilled beef with fresh lettuce, cheese & sauce.",
-      price: 3500,
-      img: "./images/still-life-delicious-american-hamburger.jpg",
-    },
-    {
-      name: "Spaghetti",
-      desc: "Loaded with extra cheese, pickles & special sauce.",
-      price: 6000,
-      img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup.jpg",
-    },
-  ],
-  Lunch: [
-    {
-      name: "Creamy Pasta",
-      desc: "Italian-inspired pasta with rich creamy sauce.",
-      price: 4500,
-      img: "./images/penne-pasta-cream-cheese.jpg",
-    },
-    {
-      name: "Spaghetti",
-      desc: "Classic spaghetti served with rich tomato sauce.",
-      price: 3000,
-      img: "./images/spaghetti.jpg",
-    },
-  ],
-  Dinner: [
-    {
-      name: "Fresh Salad",
-      desc: "A refreshing mix of greens, cucumbers & herbs.",
-      price: 2500,
-      img: "./images/vitamin-salad-young-vegetables-cabbage-radish-cucumber-fresh-herbs.jpg",
-    },
-    {
-      name: "Greek Salad",
-      desc: "Olives, feta cheese, and crunchy veggies.",
-      price: 2800,
-      img: "./images/tania-melnyczuk-xeTv9N2FjXA-unsplash.jpg",
-    },
-  ],
-  Drinks: [
-    {
-      name: "Cocktail",
-      desc: "Refreshing fruit cocktail served chilled.",
-      price: 2000,
-      img: "./images/melissa-walker-horn-gtDYwUIr9Vg-unsplash.jpg",
-    },
-    {
-      name: "Fresh Juice",
-      desc: "Made with seasonal fruits for a natural taste.",
-      price: 1500,
-      img: "./images/whitney-wright-TgQkxQc-t_U-unsplash.jpg",
-    },
-  ],
-};
+ 
+  menuItems.All = Object.values(menuItems).flat();
 
-function renderMenu(category = "All") {
-  const container = document.querySelector(".menu-grid");
-  container.innerHTML = "";
+  
+  const { readCart, writeCart, money, updateCartBadge } = window.__cartHelpers;
 
-  const items =
-    category === "All"
-      ? Object.values(menuItems).flat()
-      : menuItems[category] || [];
+  
+  const container = document.getElementById("menuContainer");
+  const tabs = document.querySelectorAll(".tab-btn");
 
-  items.forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "menu-card";
-    card.innerHTML = `
-      <img src="${item.img}" alt="${item.name}" />
-      <h3>${item.name}</h3>
-      <p>${item.desc}</p>
-      <span class="price">₦${item.price}</span>
-      <div class="menu-actions">
-        <div class="counter">
-          <button class="decrease">-</button>
-          <span class="count">1</span>
-          <button class="increase">+</button>
+  
+  function cardTemplate(item) {
+    return `
+      <div class="menu-card" data-id="${item.id}">
+        <img src="${item.img}" alt="${item.name}" />
+        <h3>${item.name}</h3>
+        <p>${item.desc}</p>
+        <span class="price">${money(item.price)}</span>
+        <div class="menu-actions">
+          <div class="counter">
+            <button class="decrease">-</button>
+            <span class="count">1</span>
+            <button class="increase">+</button>
+          </div>
+          <button class="cart-btn">Add to Cart</button>
         </div>
-        <button class="cart-btn">Add to Cart</button>
       </div>
     `;
-    container.appendChild(card);
-  });
+  }
 
-  initMenuCounters();
-}
+  function renderCategory(category = "All") {
+    const list = (menuItems[category] || []).map(cardTemplate).join("");
+    container.innerHTML = `<div class="menu-grid dynamic">${list}</div>`;
+    initCardBehaviors();
+  }
 
-function initTabs() {
-  const tabBtns = document.querySelectorAll(".tab-btn");
+  function setActiveTab(target) {
+    tabs.forEach((t) => {
+      const active = t.dataset.target === target;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", active ? "true" : "false");
+    });
+  }
 
-  tabBtns.forEach((btn) => {
+
+  function initCardBehaviors() {
+    const cards = container.querySelectorAll(".menu-card");
+    cards.forEach((card) => {
+      const dec = card.querySelector(".decrease");
+      const inc = card.querySelector(".increase");
+      const countEl = card.querySelector(".count");
+      const addBtn = card.querySelector(".cart-btn");
+      let count = 1;
+
+      const updateCount = (n) => {
+        count = Math.max(1, n);
+        countEl.textContent = count;
+      };
+
+      dec.addEventListener("click", () => updateCount(count - 1));
+      inc.addEventListener("click", () => updateCount(count + 1));
+
+      addBtn.addEventListener("click", () => {
+        const id = card.getAttribute("data-id");
+        const item = Object.values(menuItems)
+          .flat()
+          .find((i) => i.id === id);
+        if (!item) return;
+
+        const cart = readCart();
+        const found = cart.find((i) => i.id === item.id);
+        if (found) {
+          found.quantity += count;
+        } else {
+          cart.push({ ...item, quantity: count });
+        }
+        writeCart(cart);
+        updateCartBadge();
+
+        addBtn.textContent = "Added!";
+        setTimeout(() => (addBtn.textContent = "Add to Cart"), 900);
+      });
+    });
+  }
+
+ 
+  tabs.forEach((btn) => {
     btn.addEventListener("click", () => {
-      tabBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      renderMenu(btn.dataset.target);
+      const target = btn.dataset.target;
+      setActiveTab(target);
+      renderCategory(target);
     });
   });
 
-  renderMenu("All");
-}
+ 
+  setActiveTab("All");
+  renderCategory("All");
+  updateCartBadge();
+});
