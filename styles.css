@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -29,7 +28,6 @@ img {
   height: auto;
 }
 
-
 .navbar {
   position: fixed;
   inset: 0 0 auto 0;
@@ -45,7 +43,7 @@ img {
 }
 .logo {
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   color: var(--brand);
   white-space: nowrap;
 }
@@ -68,8 +66,6 @@ nav a:hover {
   gap: 14px;
   align-items: center;
 }
-
-
 
 .order-btn,
 .hero-btn {
@@ -114,7 +110,6 @@ nav a:hover {
   border-radius: 2px;
   transition: 0.25s;
 }
-
 
 #nav-links {
   display: flex;
@@ -178,7 +173,6 @@ nav a:hover {
   }
 }
 
-
 .hero {
   padding: 120px 8% 80px;
   display: grid;
@@ -203,7 +197,6 @@ nav a:hover {
   object-fit: cover;
 }
 
-
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -227,7 +220,6 @@ nav a:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 24px rgba(255, 64, 64, 0.25);
 }
-
 
 .menu-preview {
   padding: 64px 8%;
@@ -291,7 +283,6 @@ nav a:hover {
   box-shadow: 0 8px 20px rgba(240, 38, 38, 0.45);
 }
 
-
 footer {
   background: var(--panel);
   text-align: center;
@@ -335,7 +326,6 @@ footer {
   transform: scale(1.08);
   box-shadow: 0 10px 24px rgba(255, 65, 108, 0.45);
 }
-
 
 .menu-page {
   padding: 120px 8% 60px;
@@ -460,7 +450,6 @@ footer {
   color: var(--brand);
   box-shadow: 0 4px 12px rgba(240, 38, 38, 0.4);
 }
-
 
 .cart-sidebar {
   position: fixed;
@@ -616,7 +605,6 @@ footer {
   display: none;
 }
 
-
 .cart-toggle {
   background: transparent;
   border: none;
@@ -650,7 +638,6 @@ footer {
 .cart-toggle[data-count]:not([data-count="0"])::after {
   display: block;
 }
-
 
 @media (max-width: 768px) {
   .hero {
@@ -697,5 +684,124 @@ footer {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.contact {
+  position: relative;
+  padding: 4rem 2rem;
+  color: #fff;
+  background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80")
+    no-repeat center center/cover;
+  overflow: hidden;
+}
+
+.contact .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.5); /* darker overlay */
+  backdrop-filter: blur(8px) brightness(0.7); /* sleek glass + dark filter */
+  z-index: 1;
+}
+
+/* Keep content above overlay */
+.contact .container {
+  position: relative;
+  z-index: 2;
+}
+
+.contact .section-title {
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #ff4040;
+  text-shadow: 0 0 12px #ffcc00, 0 0 30px rgba(248, 210, 16, 0.3);
+}
+
+.contact .section-subtitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #bbb;
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-info p {
+  margin: 0.8rem 0;
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.contact-info i {
+  margin-right: 8px;
+  color: #ff4040;
+  text-shadow: 0 0 13px #ffcc00;
+}
+
+.contact-form {
+  background: rgba(20, 20, 20, 0.85);
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(248, 210, 16, 0.15);
+  border: 1px solid rgba(248, 210, 16, 0.2);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(248, 210, 16, 0.25);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(15, 15, 15, 0.9);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #777;
+}
+
+.contact-form .btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff4040, #ffcc00);
+  color: #111;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 18px rgba(248, 210, 16, 0.3);
+}
+
+.contact-form .btn:hover {
+  background: #111;
+  color: #fff;
+  box-shadow: 0 0 25px #ff4040;
+}
+
+@media (max-width: 768px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
   }
 }
