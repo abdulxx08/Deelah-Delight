@@ -1,4 +1,3 @@
-
 const money = (n) =>
   `₦${Number(n || 0).toLocaleString("en-NG", { maximumFractionDigits: 0 })}`;
 
@@ -12,9 +11,8 @@ const readCart = () => {
 const writeCart = (cart) => {
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartBadge();
-  renderCartSidebar(); 
+  renderCartSidebar();
 };
-
 
 function initNavbar() {
   const hamburger = document.getElementById("hamburger");
@@ -28,25 +26,38 @@ function initNavbar() {
     hamburger.setAttribute("aria-expanded", "true");
     overlay.hidden = false;
   };
+
   const closeNav = () => {
     document.body.classList.remove("nav-open");
     hamburger.classList.remove("active");
     hamburger.setAttribute("aria-expanded", "false");
     overlay.hidden = true;
   };
+
   const toggleNav = () =>
     document.body.classList.contains("nav-open") ? closeNav() : openNav();
 
   hamburger.addEventListener("click", toggleNav);
+
   overlay.addEventListener("click", closeNav);
-  navLinks
-    .querySelectorAll("a")
-    .forEach((a) => a.addEventListener("click", closeNav));
+
+  navLinks.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const href = a.getAttribute("href");
+      closeNav();
+
+      if (href && href !== "#") {
+        setTimeout(() => {
+          window.location.href = href;
+        }, 200);
+      }
+    });
+  });
+
   window.addEventListener("resize", () => {
     if (window.innerWidth > 900) closeNav();
   });
 }
-
 
 function renderCartSidebar() {
   const cart = readCart();
@@ -142,7 +153,6 @@ function initCartSidebar() {
   }
 }
 
-
 function updateCartBadge() {
   const cartToggle = document.getElementById("cartToggle");
   if (!cartToggle) return;
@@ -150,7 +160,6 @@ function updateCartBadge() {
   const count = cart.reduce((acc, i) => acc + i.quantity, 0);
   cartToggle.setAttribute("data-count", count);
 }
-
 
 function initScrollToTop() {
   const scrollBtn = document.getElementById("scrollTopBtn");
@@ -163,14 +172,12 @@ function initScrollToTop() {
   );
 }
 
-
 window.addEventListener("storage", (e) => {
   if (e.key === "cart") {
     updateCartBadge();
     renderCartSidebar();
   }
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
@@ -179,7 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCartBadge();
   renderCartSidebar();
 });
-
 
 window.__cartHelpers = {
   readCart,
@@ -217,11 +223,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (clearCart) {
     clearCart.addEventListener("click", () => {
       localStorage.removeItem("cart");
-      updateCartUI();
+      updateCartBadge();
+      renderCartSidebar();
     });
   }
 
-  updateCartUI();
+  updateCartBadge();
+  renderCartSidebar();
 });
-
-
