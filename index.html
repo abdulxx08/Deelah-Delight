@@ -28,9 +28,9 @@
       </nav>
 
       <div class="nav-cta">
-        <a href="./menu.html" class="order-btn" aria-label="Go to menu"
-          >Order Now</a
-        >
+        <a href="./menu.html" class="order-btn" aria-label="Go to menu">
+          Order Now
+        </a>
         <button
           class="cart-toggle"
           id="cartToggle"
@@ -51,10 +51,9 @@
       </div>
     </header>
 
-   
     <div class="nav-overlay" id="nav-overlay" hidden></div>
 
-    
+ 
     <section class="hero" id="home">
       <div class="hero-content">
         <h1 class="hero-title">Fresh. Fast. Flavorful.</h1>
@@ -93,7 +92,7 @@
       </div>
     </section>
 
-    
+   
     <section class="menu-preview" id="menu">
       <h2 class="section-title">✨ Preview Our Menu</h2>
       <div class="menu-grid">
@@ -120,25 +119,57 @@
         </div>
       </div>
       <div class="menu-btn-container">
-        <a href="./menu.html"
-          ><button class="view-menu-btn">View Full Menu</button></a
-        >
+        <a href="./menu.html">
+          <button class="view-menu-btn">View Full Menu</button>
+        </a>
       </div>
     </section>
 
- 
-    <footer id="contact">
+  
+    <section id="contact" class="contact">
+      <div class="overlay"></div>
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">
+          We'd love to hear from you! Get in touch for reservations, orders, or
+          questions.
+        </p>
+
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <p>
+              <i class="fa-solid fa-location-dot"></i> Plot 23 Radio Estate,
+              Port Harcourt, Nigeria
+            </p>
+            <p><i class="fa-solid fa-phone"></i> +234 913 624 6283</p>
+            <p><i class="fa-solid fa-envelope"></i> Hass46050@gmail.com</p>
+            <p>
+              <i class="fa-solid fa-clock"></i> Mon - Sun: 8:00 AM - 9:00 PM
+            </p>
+          </div>
+
+          <form class="contact-form">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
       <div class="socials">
         <a href="#"><i class="fa-brands fa-facebook"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://wa.me/2349136246283"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
       </div>
       <p>© 2025 Deelah Delight. All Rights Reserved.</p>
     </footer>
 
-
     <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
-
 
     <aside
       class="cart-sidebar"
@@ -167,5 +198,6 @@
     <div class="cart-overlay" id="cartOverlay" hidden></div>
 
     <script src="./app.js"></script>
+    <script src="./menu.js"></script>
   </body>
 </html>
