@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
   const menuItems = {
     Breakfast: [
       {
@@ -10,11 +9,25 @@ document.addEventListener("DOMContentLoaded", () => {
         desc: "Juicy grilled beef with fresh lettuce, cheese & sauce.",
       },
       {
-        id: "pasta1",
-        name: "Spaghetti",
-        price: 6000,
-        img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup.jpg",
+        id: "yam and egg",
+        name: "Yam asn Egg source",
+        price: 3500,
+        img: "./images/fish-chip.jpg",
         desc: "Loaded with extra cheese, pickles & special sauce.",
+      },
+      {
+        id: "toast",
+        name: "Toast Breakfast",
+        price: 1500,
+        img: "./images/front-close-view-tasty-toast-sandwiches-with-cheese-ham-inside-blue-plate-with-juice-french-friessnack.jpg",
+        desc: "Crispy golden toast served with creamy butter and paired with eggs & fresh veggies. A simple yet hearty way to start your day.",
+      },
+      {
+        id: "noodles",
+        name: "Stir-Fried Noodles",
+        price: 3200,
+        img: "./images/lifestyle-food-gourmet-comida-gastronomy.jpg",
+        desc: "Savory stir-fried noodles tossed with fresh veggies, aromatic spices, and a touch of soy sauce for that perfect flavor balance.",
       },
     ],
     Lunch: [
@@ -29,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         id: "spag2",
         name: "Spaghetti",
         price: 3000,
-        img: "./images/spaghetti.jpg",
+        img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup.jpg",
         desc: "Classic spaghetti served with rich tomato sauce.",
       },
     ],
@@ -67,17 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
   };
 
- 
   menuItems.All = Object.values(menuItems).flat();
 
-  
   const { readCart, writeCart, money, updateCartBadge } = window.__cartHelpers;
 
-  
   const container = document.getElementById("menuContainer");
   const tabs = document.querySelectorAll(".tab-btn");
 
-  
   function cardTemplate(item) {
     return `
       <div class="menu-card" data-id="${item.id}">
@@ -98,7 +107,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderCategory(category = "All") {
-    const list = (menuItems[category] || []).map(cardTemplate).join("");
+    if (!container) return;
+    let items = menuItems[category] || [];
+
+    if (category === "All") {
+      items = [...items].sort(() => Math.random() - 0.5);
+    }
+
+    const list = items.map(cardTemplate).join("");
     container.innerHTML = `<div class="menu-grid dynamic">${list}</div>`;
     initCardBehaviors();
   }
@@ -110,7 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
       t.setAttribute("aria-selected", active ? "true" : "false");
     });
   }
-
 
   function initCardBehaviors() {
     const cards = container.querySelectorAll(".menu-card");
@@ -152,7 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
- 
   tabs.forEach((btn) => {
     btn.addEventListener("click", () => {
       const target = btn.dataset.target;
@@ -161,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
- 
   setActiveTab("All");
   renderCategory("All");
   updateCartBadge();
