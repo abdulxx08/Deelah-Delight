@@ -1,3 +1,4 @@
+// menu.js
 document.addEventListener("DOMContentLoaded", () => {
   const menuItems = {
     Breakfast: [
@@ -9,25 +10,25 @@ document.addEventListener("DOMContentLoaded", () => {
         desc: "Juicy grilled beef with fresh lettuce, cheese & sauce.",
       },
       {
-        id: "yam and egg",
-        name: "Yam asn Egg source",
+        id: "yam1",
+        name: "Yam and Egg Sauce",
         price: 3500,
         img: "./images/fish-chip.jpg",
         desc: "Loaded with extra cheese, pickles & special sauce.",
       },
       {
-        id: "toast",
+        id: "toast1",
         name: "Toast Breakfast",
         price: 1500,
         img: "./images/front-close-view-tasty-toast-sandwiches-with-cheese-ham-inside-blue-plate-with-juice-french-friessnack.jpg",
-        desc: "Crispy golden toast served with creamy butter and paired with eggs & fresh veggies. A simple yet hearty way to start your day.",
+        desc: "Crispy golden toast with eggs & fresh veggies.",
       },
       {
-        id: "noodles",
+        id: "noodles1",
         name: "Stir-Fried Noodles",
         price: 3200,
         img: "./images/lifestyle-food-gourmet-comida-gastronomy.jpg",
-        desc: "Savory stir-fried noodles tossed with fresh veggies, aromatic spices, and a touch of soy sauce for that perfect flavor balance.",
+        desc: "Savory noodles with fresh veggies & soy sauce.",
       },
     ],
     Lunch: [
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         name: "Spaghetti",
         price: 3000,
         img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup.jpg",
-        desc: "Classic spaghetti served with rich tomato sauce.",
+        desc: "Classic spaghetti served with tomato sauce.",
       },
     ],
     Dinner: [
@@ -52,14 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
         name: "Fresh Salad",
         price: 2500,
         img: "./images/vitamin-salad-young-vegetables-cabbage-radish-cucumber-fresh-herbs.jpg",
-        desc: "A refreshing mix of greens, cucumbers & herbs.",
+        desc: "Refreshing greens, cucumbers & herbs.",
       },
       {
         id: "salad2",
         name: "Greek Salad",
         price: 2800,
         img: "./images/tania-melnyczuk-xeTv9N2FjXA-unsplash.jpg",
-        desc: "Olives, feta cheese, and crunchy veggies.",
+        desc: "Olives, feta cheese & crunchy veggies.",
       },
     ],
     Drinks: [
@@ -68,25 +69,28 @@ document.addEventListener("DOMContentLoaded", () => {
         name: "Cocktail",
         price: 2000,
         img: "./images/melissa-walker-horn-gtDYwUIr9Vg-unsplash.jpg",
-        desc: "Refreshing fruit cocktail served chilled.",
+        desc: "Refreshing chilled fruit cocktail.",
       },
       {
         id: "drink2",
         name: "Fresh Juice",
         price: 1500,
         img: "./images/whitney-wright-TgQkxQc-t_U-unsplash.jpg",
-        desc: "Made with seasonal fruits for a natural taste.",
+        desc: "Made with seasonal fruits, no sugar added.",
       },
     ],
   };
 
+  // Flatten all into "All" category
   menuItems.All = Object.values(menuItems).flat();
 
+  // Helpers
   const { readCart, writeCart, money, updateCartBadge } = window.__cartHelpers;
 
   const container = document.getElementById("menuContainer");
   const tabs = document.querySelectorAll(".tab-btn");
 
+  // Template for card
   function cardTemplate(item) {
     return `
       <div class="menu-card" data-id="${item.id}">
@@ -106,19 +110,20 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
+  // Render items by category
   function renderCategory(category = "All") {
     if (!container) return;
     let items = menuItems[category] || [];
+    if (category === "All") items = [...items].sort(() => Math.random() - 0.5);
 
-    if (category === "All") {
-      items = [...items].sort(() => Math.random() - 0.5);
-    }
+    container.innerHTML = `<div class="menu-grid dynamic">${items
+      .map(cardTemplate)
+      .join("")}</div>`;
 
-    const list = items.map(cardTemplate).join("");
-    container.innerHTML = `<div class="menu-grid dynamic">${list}</div>`;
     initCardBehaviors();
   }
 
+  // Set active tab
   function setActiveTab(target) {
     tabs.forEach((t) => {
       const active = t.dataset.target === target;
@@ -127,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Card behaviors (increase/decrease + add to cart)
   function initCardBehaviors() {
     const cards = container.querySelectorAll(".menu-card");
     cards.forEach((card) => {
@@ -167,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Tabs setup
   tabs.forEach((btn) => {
     btn.addEventListener("click", () => {
       const target = btn.dataset.target;
@@ -175,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Init
   setActiveTab("All");
   renderCategory("All");
   updateCartBadge();
