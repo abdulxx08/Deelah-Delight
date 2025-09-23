@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deelah | Checkout</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">🍴 Deelah Delight</div>
+      <nav>
+        <ul class="nav-links" id="nav-links" aria-label="Primary">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./menu.html">Menu</a></li>
+          <li><a href="./checkout.html">Checkout</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="./menu.html" class="order-btn" aria-label="Go to menu">
+          Order Now
+        </a>
+        <button
+          class="cart-toggle"
+          id="cartToggle"
+          aria-label="Open cart"
+          data-count="0"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-controls="nav-links"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div id="nav-overlay" class="nav-overlay" hidden></div>
+
+    <section class="checkout-section">
+      <h2 class="checkout-title">Checkout</h2>
+      <div class="checkout-summary">
+        <div id="checkout-items" class="checkout-items"></div>
+        <h3>Total: <span id="checkout-total">₦0</span></h3>
+
+        <form id="checkout-form" class="contact-form">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Full Name"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email Address"
+            required
+          />
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Delivery Address"
+            required
+          />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Phone Number"
+            required
+          />
+          <button type="submit">Place Order</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/2349136246283"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+      </div>
+      <p>© 2025 Deelah Delight. All Rights Reserved.</p>
+    </footer>
+
+    <aside
+      class="cart-sidebar"
+      id="cart"
+      aria-label="Shopping cart"
+      aria-hidden="true"
+    >
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="closeCart" aria-label="Close cart">&times;</button>
+      </div>
+      <div id="cart-items" class="cart-items" role="list"></div>
+      <div class="cart-footer">
+        <div class="cart-totals">
+          <h3>Total: <span id="cart-total">₦0</span></h3>
+          <span class="cart-summary" id="cart-summary">(0 items)</span>
+        </div>
+        <div class="cart-actions">
+          <button class="clear-cart-btn" id="clearCart" type="button">
+            Clear Cart
+          </button>
+          <a href="./checkout.html" class="checkout-btn">Checkout</a>
+        </div>
+      </div>
+    </aside>
+    <div class="cart-overlay" id="cartOverlay" hidden></div>
+
+    <script src="./app.js"></script>
+    <script src="./menu.js"></script>
+    <script src="./checkout.js"></script>
+  </body>
+</html>
