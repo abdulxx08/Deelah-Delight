@@ -1,6 +1,12 @@
+// =======================
+// Currency Formatter
+// =======================
 const money = (n) =>
   `₦${Number(n || 0).toLocaleString("en-NG", { maximumFractionDigits: 0 })}`;
 
+// =======================
+// Cart Helpers
+// =======================
 const readCart = () => {
   try {
     return JSON.parse(localStorage.getItem("cart")) || [];
@@ -8,12 +14,22 @@ const readCart = () => {
     return [];
   }
 };
+
 const writeCart = (cart) => {
-  localStorage.setItem("cart", JSON.stringify(cart));
+  // Ensure every item has a quantity
+  const fixedCart = cart.map((item) => ({
+    ...item,
+    quantity: item.quantity && item.quantity > 0 ? item.quantity : 1,
+  }));
+
+  localStorage.setItem("cart", JSON.stringify(fixedCart));
   updateCartBadge();
   renderCartSidebar();
 };
 
+// =======================
+// Navbar (Hamburger)
+// =======================
 function initNavbar() {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("nav-links");
@@ -26,30 +42,24 @@ function initNavbar() {
     hamburger.setAttribute("aria-expanded", "true");
     overlay.hidden = false;
   };
-
   const closeNav = () => {
     document.body.classList.remove("nav-open");
     hamburger.classList.remove("active");
     hamburger.setAttribute("aria-expanded", "false");
     overlay.hidden = true;
   };
-
   const toggleNav = () =>
     document.body.classList.contains("nav-open") ? closeNav() : openNav();
 
   hamburger.addEventListener("click", toggleNav);
-
   overlay.addEventListener("click", closeNav);
 
   navLinks.querySelectorAll("a").forEach((a) => {
     a.addEventListener("click", (e) => {
-      const href = a.getAttribute("href");
       closeNav();
-
+      const href = a.getAttribute("href");
       if (href && href !== "#") {
-        setTimeout(() => {
-          window.location.href = href;
-        }, 200);
+        window.location.href = href;
       }
     });
   });
@@ -59,6 +69,9 @@ function initNavbar() {
   });
 }
 
+// =======================
+// Cart Sidebar Renderer
+// =======================
 function renderCartSidebar() {
   const cart = readCart();
   const cartItemsContainer = document.getElementById("cart-items");
@@ -73,6 +86,7 @@ function renderCartSidebar() {
   cart.forEach((item, idx) => {
     const li = document.createElement("div");
     li.className = "cart-item";
+
     const lineTotal = item.price * item.quantity;
     total += lineTotal;
     itemCount += item.quantity;
@@ -123,6 +137,9 @@ function renderCartSidebar() {
   })`;
 }
 
+// =======================
+// Cart Sidebar Logic
+// =======================
 function initCartSidebar() {
   const cartSidebar = document.getElementById("cart");
   const cartToggle = document.getElementById("cartToggle");
@@ -153,6 +170,9 @@ function initCartSidebar() {
   }
 }
 
+// =======================
+// Cart Badge
+// =======================
 function updateCartBadge() {
   const cartToggle = document.getElementById("cartToggle");
   if (!cartToggle) return;
@@ -161,6 +181,9 @@ function updateCartBadge() {
   cartToggle.setAttribute("data-count", count);
 }
 
+// =======================
+// Scroll to Top
+// =======================
 function initScrollToTop() {
   const scrollBtn = document.getElementById("scrollTopBtn");
   if (!scrollBtn) return;
@@ -172,6 +195,9 @@ function initScrollToTop() {
   );
 }
 
+// =======================
+// Storage Sync
+// =======================
 window.addEventListener("storage", (e) => {
   if (e.key === "cart") {
     updateCartBadge();
@@ -179,6 +205,9 @@ window.addEventListener("storage", (e) => {
   }
 });
 
+// =======================
+// Init
+// =======================
 document.addEventListener("DOMContentLoaded", () => {
   initNavbar();
   initCartSidebar();
@@ -187,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCartSidebar();
 });
 
+// Expose helpers
 window.__cartHelpers = {
   readCart,
   writeCart,
@@ -194,40 +224,3 @@ window.__cartHelpers = {
   updateCartBadge,
   renderCartSidebar,
 };
-
-document.addEventListener("DOMContentLoaded", () => {
-  const cartToggle = document.getElementById("cartToggle");
-  const cartSidebar = document.getElementById("cart");
-  const cartOverlay = document.getElementById("cartOverlay");
-  const closeCart = document.getElementById("closeCart");
-  const clearCart = document.getElementById("clearCart");
-
-  if (cartToggle) {
-    cartToggle.addEventListener("click", () => {
-      cartSidebar.classList.add("active");
-      cartOverlay.hidden = false;
-    });
-  }
-  if (closeCart) {
-    closeCart.addEventListener("click", () => {
-      cartSidebar.classList.remove("active");
-      cartOverlay.hidden = true;
-    });
-  }
-  if (cartOverlay) {
-    cartOverlay.addEventListener("click", () => {
-      cartSidebar.classList.remove("active");
-      cartOverlay.hidden = true;
-    });
-  }
-  if (clearCart) {
-    clearCart.addEventListener("click", () => {
-      localStorage.removeItem("cart");
-      updateCartBadge();
-      renderCartSidebar();
-    });
-  }
-
-  updateCartBadge();
-  renderCartSidebar();
-});
