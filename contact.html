@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deelah | Contact Us</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="contact.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="logo">🍴 Deelah Delight</div>
+      <nav>
+        <ul class="nav-links" id="nav-links" aria-label="Primary">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./menu.html">Menu</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./checkout.html">Checkout</a></li>
+          <li><a href="./contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="contact-hero">
+      <h1>Get in Touch</h1>
+      <p>We’d love to hear from you. Let’s connect!</p>
+    </section>
+
+    <!-- Contact Form + Info -->
+    <section class="contact-section">
+      <div class="contact-form-container">
+        <h2>Send Us a Message</h2>
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>
+          <i class="fa-solid fa-location-dot"></i> Port Harcourt, Rivers State,
+          Nigeria
+        </p>
+        <p><i class="fa-solid fa-envelope"></i> Hass46050@gmail.com</p>
+        <p><i class="fa-solid fa-phone"></i> +234 9136246283</p>
+        <div class="socials">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/2349136246283"
+            ><i class="fa-brands fa-whatsapp"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section class="map-section">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.471266093358!2d6.995!3d4.824167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069d1c71f7777%3A0xbaa!2sPort%20Harcourt%2C%20Nigeria!5e0!3m2!1sen!2sng!4v2025"
+        width="100%"
+        height="400"
+        style="border: 0"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <button class="faq-question">📦 How do I place an order?</button>
+        <div class="faq-answer">
+          Simply visit our <a href="./menu.html">Menu</a> page, add items to
+          your cart, and head over to checkout!
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">⏰ What are your delivery hours?</button>
+        <div class="faq-answer">
+          We deliver from <b>9:00 AM - 10:00 PM</b> daily, including weekends.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          💳 What payment methods do you accept?
+        </button>
+        <div class="faq-answer">
+          We accept cash on delivery, bank transfer, and secure online payments.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">📍 Where are you located?</button>
+        <div class="faq-answer">
+          We are based in Port Harcourt, Rivers State, but we deliver across
+          Nigeria.
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/2349136246283"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+      </div>
+      <p>© 2025 Deelah Delight. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      // Contact form alert
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert("✅ Thank you! Your message has been sent.");
+          e.target.reset();
+        });
+
+      // FAQ Accordion
+      document.querySelectorAll(".faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("active");
+          const answer = btn.nextElementSibling;
+          if (answer.style.maxHeight) {
+            answer.style.maxHeight = null;
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
