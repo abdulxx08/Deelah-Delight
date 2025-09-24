@@ -1053,6 +1053,7 @@ footer {
 .mission h2 {
   margin-bottom: 2rem;
   font-size: 2rem;
+  color: #444;
 }
 .mission-cards {
   display: flex;
