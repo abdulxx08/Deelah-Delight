@@ -81,16 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
   };
 
-  // Flatten all into "All" category
   menuItems.All = Object.values(menuItems).flat();
 
-  // Helpers
   const { readCart, writeCart, money, updateCartBadge } = window.__cartHelpers;
 
   const container = document.getElementById("menuContainer");
   const tabs = document.querySelectorAll(".tab-btn");
 
-  // Template for card
   function cardTemplate(item) {
     return `
       <div class="menu-card" data-id="${item.id}">
@@ -110,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  // Render items by category
   function renderCategory(category = "All") {
     if (!container) return;
     let items = menuItems[category] || [];
@@ -123,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initCardBehaviors();
   }
 
-  // Set active tab
   function setActiveTab(target) {
     tabs.forEach((t) => {
       const active = t.dataset.target === target;
@@ -132,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Card behaviors (increase/decrease + add to cart)
   function initCardBehaviors() {
     const cards = container.querySelectorAll(".menu-card");
     cards.forEach((card) => {
@@ -173,7 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Tabs setup
   tabs.forEach((btn) => {
     btn.addEventListener("click", () => {
       const target = btn.dataset.target;
@@ -182,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Init
   setActiveTab("All");
   renderCategory("All");
   updateCartBadge();
