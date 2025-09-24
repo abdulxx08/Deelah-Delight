@@ -9,7 +9,7 @@ function renderCheckout() {
   const cart = readCart();
   itemsContainer.innerHTML = "";
 
-  if (cart.length === 0) {
+  if (!cart || cart.length === 0) {
     itemsContainer.innerHTML = `<p>Your cart is empty 🛒 <a href="./menu.html">Go to Menu</a></p>`;
     totalEl.textContent = "₦0";
     return;
@@ -17,7 +17,10 @@ function renderCheckout() {
 
   let total = 0;
   cart.forEach((item) => {
-    const lineTotal = item.price * item.quantity;
+    const price = Number(item.price) || 0;
+    const qty = Number(item.quantity) || 1;
+    console.log("Item debug:", item, "Price:", price, "Qty:", qty);
+    const lineTotal = price * qty;
     total += lineTotal;
 
     const div = document.createElement("div");
@@ -26,7 +29,7 @@ function renderCheckout() {
       <img src="${item.img}" alt="${item.name}">
       <div>
         <h4>${item.name}</h4>
-        <p>${money(item.price)} × ${item.quantity}</p>
+        <p>${money(price)} × ${qty}</p>
         <strong>${money(lineTotal)}</strong>
       </div>
     `;
@@ -58,7 +61,6 @@ function initCheckoutForm() {
     writeCart([]);
     renderCheckout();
     updateCartBadge();
-
     form.reset();
   });
 }
