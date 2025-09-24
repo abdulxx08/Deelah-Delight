@@ -15,19 +15,43 @@
       rel="stylesheet"
     />
   </head>
-    <!-- Navbar -->
+     <!-- Navbar -->
     <header class="navbar">
       <div class="logo">🍴 Deelah Delight</div>
       <nav>
         <ul class="nav-links" id="nav-links" aria-label="Primary">
           <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
           <li><a href="./menu.html">Menu</a></li>
-          <li><a href="./about.html" class="active">About</a></li>
-          <li><a href="./checkout.html">Checkout</a></li>
           <li><a href="./contact.html">Contact</a></li>
+          <li><a href="./checkout.html">Checkout</a></li>
         </ul>
       </nav>
+
+      <div class="nav-cta">
+        <a href="./menu.html" class="order-btn">Order Now</a>
+        <button
+          class="cart-toggle"
+          id="cartToggle"
+          aria-label="Open cart"
+          data-count="0"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-controls="nav-links"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </header>
+
+    <div class="nav-overlay" id="nav-overlay" hidden></div>
+
 
     <!-- Hero -->
     <section class="about-hero">
@@ -39,10 +63,10 @@
       <div class="about-text">
         <h2>Welcome to Deelah Delight</h2>
         <p>
-          At Deelah Delight, we believe food is more than a meal – it’s an
-          experience. Since our beginning, we’ve served dishes crafted with
+          At Deelah Delight, we believe food is more than a meal  it's an
+          experience. Since our beginning, we've served dishes crafted with
           love, culture, and fresh ingredients. Our mission is simple: to bring
-          people together around flavors they’ll never forget.
+          people together around flavors they'll never forget.
         </p>
       </div>
       <div class="about-img">
@@ -114,5 +138,6 @@
       </div>
       <p>© 2025 Deelah Delight. All Rights Reserved.</p>
     </footer>
+    <script src="./app.js"></script>
   </body>
 </html>
