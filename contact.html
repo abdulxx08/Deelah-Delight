@@ -22,18 +22,43 @@
       <nav>
         <ul class="nav-links" id="nav-links" aria-label="Primary">
           <li><a href="./index.html">Home</a></li>
-          <li><a href="./menu.html">Menu</a></li>
           <li><a href="./about.html">About</a></li>
+          <li><a href="./menu.html">Menu</a></li>
+          <li><a href="./contact.html">Contact</a></li>
           <li><a href="./checkout.html">Checkout</a></li>
-          <li><a href="./contact.html" class="active">Contact</a></li>
         </ul>
       </nav>
+
+      <div class="nav-cta">
+        <a href="./menu.html" class="order-btn">Order Now</a>
+        <button
+          class="cart-toggle"
+          id="cartToggle"
+          aria-label="Open cart"
+          data-count="0"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-controls="nav-links"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </header>
+
+    <div class="nav-overlay" id="nav-overlay" hidden></div>
+
+    <!-- Hero -->
 
     <!-- Hero -->
     <section class="contact-hero">
       <h1>Get in Touch</h1>
-      <p>We’d love to hear from you. Let’s connect!</p>
+      <p>We'd love to hear from you. Let's connect!</p>
     </section>
 
     <!-- Contact Form + Info -->
@@ -151,5 +176,6 @@
         });
       });
     </script>
+    <script src="./app.js"></script>
   </body>
 </html>
