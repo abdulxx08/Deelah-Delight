@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         id: "spag2",
         name: "Spaghetti",
         price: 3000,
-        img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup.jpg",
+        img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup",
         desc: "Classic spaghetti served with tomato sauce.",
       },
     ],
