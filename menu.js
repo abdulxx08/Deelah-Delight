@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "drink2",
         name: "Fresh Juice",
-        price: 500,
+        price: 100,
         img: "./images/whitney-wright-TgQkxQc-t_U-unsplash.jpg",
         desc: "Made with seasonal fruits, no sugar added.",
       },
