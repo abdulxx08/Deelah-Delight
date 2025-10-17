@@ -47,3 +47,30 @@ function renderCheckout() {
 }
 
 document.addEventListener("DOMContentLoaded", renderCheckout);
+
+document.getElementById("checkout-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = e.target.name.value.trim();
+  const email = e.target.email.value.trim();
+  const address = e.target.address.value.trim();
+  const phone = e.target.phone.value.trim();
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+  // Save order
+  const orderData = {
+    customer: { name, email, address, phone },
+    cart,
+    total,
+    date: new Date().toLocaleString(),
+  };
+  localStorage.setItem("lastOrder", JSON.stringify(orderData));
+
+  // Clear cart
+  localStorage.removeItem("cart");
+
+  // Redirect
+  window.location.href = "./order-summary.html";
+});
