@@ -74,3 +74,16 @@ document.getElementById("checkout-form").addEventListener("submit", (e) => {
   // Redirect
   window.location.href = "./order-summary.html";
 });
+
+// After successful payment
+const order = {
+  ref: refNumber,
+  date: new Date(),
+  total: totalAmount,
+  items: cartItems,
+};
+
+// Save order to history
+const pastOrders = JSON.parse(localStorage.getItem("orders")) || [];
+pastOrders.push(order);
+localStorage.setItem("orders", JSON.stringify(pastOrders));
