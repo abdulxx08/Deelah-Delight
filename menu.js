@@ -1,4 +1,3 @@
-// menu.js
 document.addEventListener("DOMContentLoaded", () => {
   const menuItems = {
     Breakfast: [
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         id: "spag2",
         name: "Spaghetti",
         price: 3000,
-        img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup",
+        img: "./images/pasta-spaghetti-with-shrimps-tomato-sauce-served-plate-dark-surface-closeup.jpg",
         desc: "Classic spaghetti served with tomato sauce.",
       },
     ],
@@ -74,43 +73,80 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "drink2",
         name: "Fresh Juice",
-        price: 1500,
+        price: 500,
         img: "./images/whitney-wright-TgQkxQc-t_U-unsplash.jpg",
         desc: "Made with seasonal fruits, no sugar added.",
       },
     ],
   };
 
+  // Flatten for "All"
   menuItems.All = Object.values(menuItems).flat();
 
-  const { readCart, writeCart, money, updateCartBadge } = window.__cartHelpers;
+  const {
+    readCart: getCart,
+    writeCart: saveCart,
+    money: formatMoney,
+    updateCartBadge,
+  } = window.__cartHelpers;
 
   const container = document.getElementById("menuContainer");
   const tabs = document.querySelectorAll(".tab-btn");
+  const searchInput = document.getElementById("menuSearch");
 
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  // Template
   function cardTemplate(item) {
+    const isFav = favorites.includes(item.id);
     return `
-      <div class="menu-card" data-id="${item.id}">
+      <div class="menu-card fade-in" data-id="${item.id}">
         <img src="${item.img}" alt="${item.name}" />
-        <h3>${item.name}</h3>
-        <p>${item.desc}</p>
-        <span class="price">${money(item.price)}</span>
-        <div class="menu-actions">
-          <div class="counter">
-            <button class="decrease">-</button>
-            <span class="count">1</span>
-            <button class="increase">+</button>
+        <div class="menu-card-content">
+          <div class="menu-header">
+            <h3>${item.name}</h3>
+            <button class="fav-btn ${isFav ? "active" : ""}" data-id="${
+      item.id
+    }" title="Add to favorites">
+              <i class="fa-solid fa-heart"></i>
+            </button>
           </div>
-          <button class="cart-btn">Add to Cart</button>
+          <p>${item.desc}</p>
+          <span class="price">${formatMoney(item.price)}</span>
+          <div class="menu-actions">
+            <div class="counter">
+              <button class="decrease">-</button>
+              <span class="count">1</span>
+              <button class="increase">+</button>
+            </div>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
         </div>
       </div>
     `;
   }
 
-  function renderCategory(category = "All") {
-    if (!container) return;
-    let items = menuItems[category] || [];
-    if (category === "All") items = [...items].sort(() => Math.random() - 0.5);
+  // Render by category
+  function renderCategory(category = "All", filter = "") {
+    let items = [];
+
+    if (category === "Favorites") {
+      const allItems = Object.values(menuItems).flat();
+      items = allItems.filter((i) => favorites.includes(i.id));
+    } else {
+      items = menuItems[category] || [];
+      if (category === "All") items = [...items];
+    }
+
+    if (filter) {
+      const q = filter.toLowerCase();
+      items = items.filter((i) => i.name.toLowerCase().includes(q));
+    }
+
+    if (!items.length) {
+      container.innerHTML = `<p style="text-align:center;opacity:0.7;margin-top:20px;">No items found.</p>`;
+      return;
+    }
 
     container.innerHTML = `<div class="menu-grid dynamic">${items
       .map(cardTemplate)
@@ -119,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initCardBehaviors();
   }
 
+  // Tabs
   function setActiveTab(target) {
     tabs.forEach((t) => {
       const active = t.dataset.target === target;
@@ -127,13 +164,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Card interactions
   function initCardBehaviors() {
     const cards = container.querySelectorAll(".menu-card");
+
     cards.forEach((card) => {
       const dec = card.querySelector(".decrease");
       const inc = card.querySelector(".increase");
       const countEl = card.querySelector(".count");
       const addBtn = card.querySelector(".cart-btn");
+      const favBtn = card.querySelector(".fav-btn");
       let count = 1;
 
       const updateCount = (n) => {
@@ -145,36 +185,52 @@ document.addEventListener("DOMContentLoaded", () => {
       inc.addEventListener("click", () => updateCount(count + 1));
 
       addBtn.addEventListener("click", () => {
-        const id = card.getAttribute("data-id");
+        const id = card.dataset.id;
         const item = Object.values(menuItems)
           .flat()
           .find((i) => i.id === id);
         if (!item) return;
 
-        const cart = readCart();
+        const cart = getCart();
         const found = cart.find((i) => i.id === item.id);
-        if (found) {
-          found.quantity += count;
-        } else {
-          cart.push({ ...item, quantity: count });
-        }
-        writeCart(cart);
+        if (found) found.quantity += count;
+        else cart.push({ ...item, quantity: count });
+        saveCart(cart);
         updateCartBadge();
 
         addBtn.textContent = "Added!";
         setTimeout(() => (addBtn.textContent = "Add to Cart"), 900);
       });
+
+      favBtn.addEventListener("click", () => {
+        const id = favBtn.dataset.id;
+        if (favorites.includes(id)) {
+          favorites = favorites.filter((f) => f !== id);
+          favBtn.classList.remove("active");
+        } else {
+          favorites.push(id);
+          favBtn.classList.add("active");
+        }
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+      });
     });
   }
 
-  tabs.forEach((btn) => {
+  // Event listeners
+  tabs.forEach((btn) =>
     btn.addEventListener("click", () => {
       const target = btn.dataset.target;
       setActiveTab(target);
-      renderCategory(target);
-    });
+      renderCategory(target, searchInput.value);
+    })
+  );
+
+  searchInput.addEventListener("input", (e) => {
+    const category = document.querySelector(".tab-btn.active")?.dataset.target;
+    renderCategory(category, e.target.value);
   });
 
+  // Init
   setActiveTab("All");
   renderCategory("All");
   updateCartBadge();
