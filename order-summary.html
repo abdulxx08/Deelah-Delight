@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment | Deelah Delight</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">🍴 Deelah Delight</div>
+      <a href="./menu.html" class="order-btn">Back to Menu</a>
+    </header>
+
+    <main class="checkout-page">
+      <h1 class="checkout-title">💳 Complete Your Payment</h1>
+
+      <section id="order-details" class="checkout-summary"></section>
+
+      <section id="order-items" class="checkout-items"></section>
+
+      <section class="payment-section">
+        <h2>Select Payment Method</h2>
+        <div class="payment-methods">
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="card" checked />
+            <i class="fa-solid fa-credit-card"></i> Card Payment
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="transfer" />
+            <i class="fa-solid fa-money-bill-transfer"></i> Bank Transfer
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="cash" />
+            <i class="fa-solid fa-hand-holding-dollar"></i> Cash on Delivery
+          </label>
+        </div>
+      </section>
+
+      <div class="order-actions">
+        <button id="payNowBtn" class="checkout-btn">Pay Now</button>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Deelah Delight — Secure Payments Guaranteed 💫</p>
+    </footer>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="order-summary.js"></script>
+  </body>
+</html>
