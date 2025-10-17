@@ -18,41 +18,27 @@
     <header class="navbar">
       <div class="logo">🍴 Deelah Delight</div>
       <nav>
-        <ul class="nav-links" id="nav-links">
+        <ul class="nav-links" id="nav-links" aria-label="Primary">
           <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
           <li><a href="./menu.html">Menu</a></li>
           <li><a href="./contact.html">Contact</a></li>
+          <li><a href="./checkout.html">Checkout</a></li>
         </ul>
       </nav>
     </header>
 
-    <main class="checkout-page" style="text-align: center">
+    <main class="checkout-page">
       <div class="thankyou-container">
-        <i
-          class="fa-solid fa-circle-check"
-          style="font-size: 4rem; color: #28a745; margin-bottom: 1rem"
-        ></i>
+        <i class="fa-solid fa-circle-check success-icon"></i>
         <h1>Order Placed Successfully!</h1>
-        <p style="color: var(--muted); max-width: 600px; margin: 10px auto">
-          Thank you for choosing <strong>Deelah Delight</strong>! Your order has
-          been received and is being processed. You’ll receive a confirmation
-          message shortly.
+        <p class="thankyou-text">
+          Thank you for ordering from <strong>Deelah Delight</strong>! Your
+          order has been received and is being prepared with love 💖.
         </p>
 
-        <div
-          class="order-summary-card"
-          style="
-            margin: 2rem auto;
-            max-width: 600px;
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-          "
-        >
-          <h3 style="color: var(--brand); margin-bottom: 10px">
-            Order Summary
-          </h3>
+        <div class="order-summary-card">
+          <h3>Order Summary</h3>
           <p><strong>Order ID:</strong> <span id="orderRef">#DL0000</span></p>
           <p><strong>Total Amount:</strong> <span id="orderTotal">₦0</span></p>
         </div>
@@ -67,13 +53,16 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // Generate random order reference (e.g., DL-4F7X92PQ1L)
+        const randomRef =
+          "DL-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+
+        // Get total from query string or fallback to 0
         const params = new URLSearchParams(window.location.search);
         const total = params.get("total") || 0;
-        const ref =
-          params.get("ref") || "DL" + Math.floor(Math.random() * 100000);
 
+        document.getElementById("orderRef").textContent = randomRef;
         document.getElementById("orderTotal").textContent = "₦" + total;
-        document.getElementById("orderRef").textContent = "#" + ref;
       });
     </script>
   </body>
