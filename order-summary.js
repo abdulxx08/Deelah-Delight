@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("✅ Payment successful! Reference: " + response.reference);
         localStorage.removeItem("cart");
         localStorage.removeItem("lastOrder");
-        window.location.href = "./thank-you.html";
+        window.location.href = "./thankyou.html";
       },
       onClose: function () {
         alert("Payment cancelled ❌");
