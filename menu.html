@@ -54,47 +54,23 @@
     <main class="menu-page">
       <h1 class="menu-title">Our Delicious Menu</h1>
 
+      <!-- 🔍 Search Bar -->
+      <div class="menu-search-container">
+        <input
+          type="text"
+          id="menuSearch"
+          placeholder="Search for your favorite meal..."
+          aria-label="Search menu"
+        />
+      </div>
+
       <div class="menu-tabs" role="tablist" aria-label="Menu categories">
-        <button
-          class="tab-btn active"
-          role="tab"
-          aria-selected="true"
-          data-target="All"
-        >
-          All
-        </button>
-        <button
-          class="tab-btn"
-          role="tab"
-          aria-selected="false"
-          data-target="Breakfast"
-        >
-          Breakfast
-        </button>
-        <button
-          class="tab-btn"
-          role="tab"
-          aria-selected="false"
-          data-target="Lunch"
-        >
-          Lunch
-        </button>
-        <button
-          class="tab-btn"
-          role="tab"
-          aria-selected="false"
-          data-target="Dinner"
-        >
-          Dinner
-        </button>
-        <button
-          class="tab-btn"
-          role="tab"
-          aria-selected="false"
-          data-target="Drinks"
-        >
-          🥤 Drinks
-        </button>
+        <button class="tab-btn active" data-target="All">All</button>
+        <button class="tab-btn" data-target="Breakfast">Breakfast</button>
+        <button class="tab-btn" data-target="Lunch">Lunch</button>
+        <button class="tab-btn" data-target="Dinner">Dinner</button>
+        <button class="tab-btn" data-target="Drinks">🥤 Drinks</button>
+        <button class="tab-btn" data-target="Favorites">❤️ Favorites</button>
       </div>
 
       <section
@@ -125,7 +101,7 @@
             Clear Cart
           </button>
           <button class="checkout-btn" type="button">
-            <a class="checkout-btns" href="./checkout.html">Checkout</a>
+            <a class="checkout-btn" href="./checkout.html">Checkout</a>
           </button>
         </div>
       </div>
