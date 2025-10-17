@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Orders | Deelah Delight</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="logo">🍴 Deelah Delight</div>
+      <nav>
+        <ul class="nav-links" id="nav-links" aria-label="Primary">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./menu.html">Menu</a></li>
+          <li><a href="./orders.html" class="active">Orders</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+          <li><a href="./checkout.html">Checkout</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="./menu.html" class="order-btn">Order Now</a>
+        <button
+          class="cart-toggle"
+          id="cartToggle"
+          aria-label="Open cart"
+          data-count="0"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-controls="nav-links"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="nav-overlay" id="nav-overlay" hidden></div>
+
+    <main class="orders-page">
+      <h1 class="orders-title">Your Orders</h1>
+      <div id="orders-container" class="orders-container">
+        <p class="empty-orders">You have no past orders yet.</p>
+      </div>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <aside
+      class="cart-sidebar"
+      id="cart"
+      aria-label="Shopping cart"
+      aria-hidden="true"
+    >
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="closeCart" aria-label="Close cart">&times;</button>
+      </div>
+      <div id="cart-items" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-totals">
+          <h3>Total: <span id="cart-total">₦0</span></h3>
+          <span class="cart-summary" id="cart-summary">(0 items)</span>
+        </div>
+        <div class="cart-actions">
+          <button class="clear-cart-btn" id="clearCart">Clear Cart</button>
+          <a href="./checkout.html" class="checkout-btn">Checkout</a>
+        </div>
+      </div>
+    </aside>
+    <div class="cart-overlay" id="cartOverlay" hidden></div>
+
+    <footer>
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/2349136246283"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+      </div>
+      <p>© 2025 Deelah Delight. All Rights Reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="orders.js"></script>
+  </body>
+</html>
